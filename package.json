@@ -9,15 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^1.2.22",
     "@ai-sdk/openai": "^1.3.22",
-    "@assistant-ui/react": "^0.10.9",
-    "@assistant-ui/react-ai-sdk": "^0.10.9",
+    "@assistant-ui/react": "^0.10.35",
+    "@assistant-ui/react-ai-sdk": "^0.10.16",
     "@assistant-ui/react-markdown": "^0.10.3",
+    "@officexapp/types": "^0.0.184",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "ai": "^4.3.16",
+    "ai": "^4.3.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
@@ -26,7 +29,8 @@
     "react-dom": "^19.1.0",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.3.0",
-    "tw-animate-css": "^1.3.0"
+    "tw-animate-css": "^1.3.0",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

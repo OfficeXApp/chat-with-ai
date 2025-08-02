@@ -22,11 +22,17 @@ import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { ToolFallback } from "./tool-fallback";
+import {
+  ComposerAddAttachment,
+  ComposerAttachments,
+  UserMessageAttachments,
+} from "./attachment";
 
 export const Thread: FC = () => {
   return (
     <ThreadPrimitive.Root
-      className="bg-background box-border flex h-full flex-col overflow-hidden"
+      // className="bg-background box-border flex h-full flex-col overflow-hidden"
+      className="bg-background box-border flex h-full flex-col"
       style={{
         ["--thread-max-width" as string]: "42rem",
       }}
@@ -41,16 +47,15 @@ export const Thread: FC = () => {
             AssistantMessage: AssistantMessage,
           }}
         />
-
+        {/* 
         <ThreadPrimitive.If empty={false}>
           <div className="min-h-8 flex-grow" />
-        </ThreadPrimitive.If>
-
-        <div className="sticky bottom-0 mt-3 flex w-full max-w-[var(--thread-max-width)] flex-col items-center justify-end rounded-t-lg bg-inherit pb-4">
-          <ThreadScrollToBottom />
-          <Composer />
-        </div>
+        </ThreadPrimitive.If> */}
       </ThreadPrimitive.Viewport>
+      <div className="sticky bottom-0 mt-3 flex w-full max-w-[var(--thread-max-width)] flex-col items-center justify-end rounded-t-lg bg-inherit pb-4 mx-auto">
+        <ThreadScrollToBottom />
+        <Composer />
+      </div>
     </ThreadPrimitive.Root>
   );
 };
@@ -112,6 +117,8 @@ const ThreadWelcomeSuggestions: FC = () => {
 const Composer: FC = () => {
   return (
     <ComposerPrimitive.Root className="focus-within:border-ring/20 flex w-full flex-wrap items-end rounded-lg border bg-inherit px-2.5 shadow-sm transition-colors ease-in">
+      <ComposerAttachments />
+      <ComposerAddAttachment />
       <ComposerPrimitive.Input
         rows={1}
         autoFocus
@@ -156,6 +163,7 @@ const UserMessage: FC = () => {
   return (
     <MessagePrimitive.Root className="grid auto-rows-auto grid-cols-[minmax(72px,1fr)_auto] gap-y-2 [&:where(>*)]:col-start-2 w-full max-w-[var(--thread-max-width)] py-4">
       <UserActionBar />
+      <UserMessageAttachments />
 
       <div className="bg-muted text-foreground max-w-[calc(var(--thread-max-width)*0.8)] break-words rounded-3xl px-5 py-2.5 col-start-2 row-start-2">
         <MessagePrimitive.Content />
