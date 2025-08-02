@@ -4,7 +4,6 @@
 // import { frontendTools } from "@assistant-ui/react-ai-sdk";
 import { streamText } from "ai";
 import { google } from "@ai-sdk/google";
-import { NextResponse } from "next/server";
 
 export const runtime = "edge";
 export const maxDuration = 30;

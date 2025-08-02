@@ -39,3 +39,8 @@ pm2 start npm --name "my-assistant-ui" -- start
 # view logs
 pm2 logs my-assistant-ui
 ```
+
+```sh
+# restart nginx
+sudo systemctl restart nginx
+```
