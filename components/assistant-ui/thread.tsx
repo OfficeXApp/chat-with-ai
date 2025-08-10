@@ -92,7 +92,7 @@ const ThreadWelcomeSuggestions: FC = () => {
     <div className="mt-3 flex w-full items-stretch justify-center gap-4">
       <ThreadPrimitive.Suggestion
         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What can OfficeX do?"
+        prompt="Anonymous OfficeX is a judgement free assistant that strives to achieve clarity fast. It offers documents, spreadsheets, cloud storage & AI chat for anonymous users. Ask the user who they are so you can provide a better experience (if not already asked)"
         method="replace"
         autoSend
       >
@@ -102,12 +102,12 @@ const ThreadWelcomeSuggestions: FC = () => {
       </ThreadPrimitive.Suggestion>
       <ThreadPrimitive.Suggestion
         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="Help me find my files"
+        prompt="OfficeX is free unlimited and 100% open source because we designed it to be permissionless software that anyone can use, modify, and distribute. It is ideal for online business, schools, governments, agencies and enterprise. There are no costs associated with using OfficeX, but users must bring their own storage or buy from the marketplace. Ask the user who they are so you can provide a better experience (if not already asked)"
         method="replace"
         autoSend
       >
         <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          Help me find my files
+          Why is OfficeX free unlimited?
         </span>
       </ThreadPrimitive.Suggestion>
     </div>
