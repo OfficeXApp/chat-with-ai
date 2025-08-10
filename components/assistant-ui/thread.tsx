@@ -92,7 +92,7 @@ const ThreadWelcomeSuggestions: FC = () => {
     <div className="mt-3 flex w-full items-stretch justify-center gap-4">
       <ThreadPrimitive.Suggestion
         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="Anonymous OfficeX is a judgement free assistant that strives to achieve clarity fast. It offers documents, spreadsheets, cloud storage & AI chat for anonymous users. Ask the user who they are so you can provide a better experience (if not already asked)"
+        prompt="What can OfficeX do? Anonymous OfficeX is a judgement free assistant that strives to achieve clarity fast. It offers documents, spreadsheets, cloud storage & AI chat for anonymous users. Personalize my understanding by interviewing my needs."
         method="replace"
         autoSend
       >
@@ -102,7 +102,7 @@ const ThreadWelcomeSuggestions: FC = () => {
       </ThreadPrimitive.Suggestion>
       <ThreadPrimitive.Suggestion
         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="OfficeX is free unlimited and 100% open source because we designed it to be permissionless software that anyone can use, modify, and distribute. It is ideal for online business, schools, governments, agencies and enterprise. There are no costs associated with using OfficeX, but users must bring their own storage or buy from the marketplace. Ask the user who they are so you can provide a better experience (if not already asked)"
+        prompt="Why is OfficeX free unlimited? What does it mean to be 100% open source  permissionless software that anyone can use, modify, and distribute, and why do developers, schools, governments, agencies and enterprise love it? Also explain to me the zero costs associated with using OfficeX, and how users must bring their own storage or buy from the marketplace. Personalize my understanding by interviewing my needs."
         method="replace"
         autoSend
       >
