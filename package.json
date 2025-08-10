@@ -14,7 +14,7 @@
     "@assistant-ui/react": "^0.10.35",
     "@assistant-ui/react-ai-sdk": "^0.10.16",
     "@assistant-ui/react-markdown": "^0.10.3",
-    "@officexapp/types": "^0.0.184",
+    "@officexapp/types": "^0.0.185",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-separator": "^1.1.7",

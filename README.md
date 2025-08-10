@@ -1,3 +1,4 @@
+Original Repo:
 https://github.com/assistant-ui/assistant-ui-starter.git
 
 This is the [assistant-ui](https://github.com/Yonom/assistant-ui) starter project.
@@ -43,4 +44,12 @@ pm2 logs my-assistant-ui
 ```sh
 # restart nginx
 sudo systemctl restart nginx
+```
+
+```sh
+pm2 stop my-assistant-ui
+
+pm2 delete my-assistant-ui
+
+pm2 restart my-assistant-ui
 ```
