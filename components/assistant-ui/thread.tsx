@@ -6,6 +6,7 @@ import {
   ThreadPrimitive,
 } from "@assistant-ui/react";
 import type { FC } from "react";
+import Locale from "../../locales";
 import {
   ArrowDownIcon,
   CheckIcon,
@@ -79,40 +80,40 @@ const ThreadWelcome: FC = () => {
     <ThreadPrimitive.Empty>
       <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
         <div className="flex w-full flex-grow flex-col items-center justify-center">
-          <p className="mt-4 font-medium">How can I help you today?</p>
+          <p className="mt-4 font-medium">{Locale.MainChat.WelcomeMessage}</p>
         </div>
-        <ThreadWelcomeSuggestions />
+        {/* <ThreadWelcomeSuggestions /> */}
       </div>
     </ThreadPrimitive.Empty>
   );
 };
 
-const ThreadWelcomeSuggestions: FC = () => {
-  return (
-    <div className="mt-3 flex w-full items-stretch justify-center gap-4">
-      <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What can OfficeX do? Anonymous OfficeX is a judgement free assistant that strives to achieve clarity fast. It offers documents, spreadsheets, cloud storage & AI chat for anonymous users. Personalize my understanding by interviewing my needs."
-        method="replace"
-        autoSend
-      >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          What can OfficeX do?
-        </span>
-      </ThreadPrimitive.Suggestion>
-      <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="Why is OfficeX free unlimited? What does it mean to be 100% open source  permissionless software that anyone can use, modify, and distribute, and why do developers, schools, governments, agencies and enterprise love it? Also explain to me the zero costs associated with using OfficeX, and how users must bring their own storage or buy from the marketplace. Personalize my understanding by interviewing my needs."
-        method="replace"
-        autoSend
-      >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          Why is OfficeX free unlimited?
-        </span>
-      </ThreadPrimitive.Suggestion>
-    </div>
-  );
-};
+// const ThreadWelcomeSuggestions: FC = () => {
+//   return (
+//     <div className="mt-3 flex w-full items-stretch justify-center gap-4">
+//       <ThreadPrimitive.Suggestion
+//         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
+//         prompt="What can OfficeX do? Anonymous OfficeX is a judgement free assistant that strives to achieve clarity fast. It offers documents, spreadsheets, cloud storage & AI chat for anonymous users. Personalize my understanding by interviewing my needs."
+//         method="replace"
+//         autoSend
+//       >
+//         <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
+//           What can OfficeX do?
+//         </span>
+//       </ThreadPrimitive.Suggestion>
+//       <ThreadPrimitive.Suggestion
+//         className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
+//         prompt="Why is OfficeX free unlimited? What does it mean to be 100% open source  permissionless software that anyone can use, modify, and distribute, and why do developers, schools, governments, agencies and enterprise love it? Also explain to me the zero costs associated with using OfficeX, and how users must bring their own storage or buy from the marketplace. Personalize my understanding by interviewing my needs."
+//         method="replace"
+//         autoSend
+//       >
+//         <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
+//           Why is OfficeX free unlimited?
+//         </span>
+//       </ThreadPrimitive.Suggestion>
+//     </div>
+//   );
+// };
 
 const Composer: FC = () => {
   return (
@@ -122,7 +123,7 @@ const Composer: FC = () => {
       <ComposerPrimitive.Input
         rows={1}
         autoFocus
-        placeholder="Write a message..."
+        placeholder={Locale.MainChat.InputPlaceholder}
         className="placeholder:text-muted-foreground max-h-40 flex-grow resize-none border-none bg-transparent px-2 py-4 text-sm outline-none focus:ring-0 disabled:cursor-not-allowed"
       />
       <ComposerAction />
@@ -147,7 +148,7 @@ const ComposerAction: FC = () => {
       <ThreadPrimitive.If running>
         <ComposerPrimitive.Cancel asChild>
           <TooltipIconButton
-            tooltip="Cancel"
+            tooltip={Locale.MainChat.ToolTips.Cancel}
             variant="default"
             className="my-2.5 size-8 p-2 transition-opacity ease-in"
           >
@@ -182,7 +183,7 @@ const UserActionBar: FC = () => {
       className="flex flex-col items-end col-start-1 row-start-2 mr-3 mt-2.5"
     >
       <ActionBarPrimitive.Edit asChild>
-        <TooltipIconButton tooltip="Edit">
+        <TooltipIconButton tooltip={Locale.MainChat.ToolTips.Edit}>
           <PencilIcon />
         </TooltipIconButton>
       </ActionBarPrimitive.Edit>
@@ -197,10 +198,10 @@ const EditComposer: FC = () => {
 
       <div className="mx-3 mb-3 flex items-center justify-center gap-2 self-end">
         <ComposerPrimitive.Cancel asChild>
-          <Button variant="ghost">Cancel</Button>
+          <Button variant="ghost">{Locale.MainChat.ToolTips.Cancel}</Button>
         </ComposerPrimitive.Cancel>
         <ComposerPrimitive.Send asChild>
-          <Button>Send</Button>
+          <Button>{Locale.MainChat.ToolTips.Send}</Button>
         </ComposerPrimitive.Send>
       </div>
     </ComposerPrimitive.Root>
@@ -232,7 +233,7 @@ const AssistantActionBar: FC = () => {
       className="text-muted-foreground flex gap-1 col-start-3 row-start-2 -ml-1 data-[floating]:bg-background data-[floating]:absolute data-[floating]:rounded-md data-[floating]:border data-[floating]:p-1 data-[floating]:shadow-sm"
     >
       <ActionBarPrimitive.Copy asChild>
-        <TooltipIconButton tooltip="Copy">
+        <TooltipIconButton tooltip={Locale.MainChat.ToolTips.Copy}>
           <MessagePrimitive.If copied>
             <CheckIcon />
           </MessagePrimitive.If>
@@ -242,7 +243,7 @@ const AssistantActionBar: FC = () => {
         </TooltipIconButton>
       </ActionBarPrimitive.Copy>
       <ActionBarPrimitive.Reload asChild>
-        <TooltipIconButton tooltip="Refresh">
+        <TooltipIconButton tooltip={Locale.MainChat.ToolTips.Refresh}>
           <RefreshCwIcon />
         </TooltipIconButton>
       </ActionBarPrimitive.Reload>

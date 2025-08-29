@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import Locale from "../locales";
 import { ThreadList } from "./assistant-ui/thread-list";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -25,7 +26,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <MessagesSquare className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Conversations</span>
+                  <span className="font-semibold">
+                    {Locale.SideBar.Conversations}
+                  </span>
                 </div>
               </Link>
             </SidebarMenuButton>

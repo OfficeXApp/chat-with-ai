@@ -2,6 +2,7 @@
 
 import { PropsWithChildren, useEffect, useState, type FC } from "react";
 import { CircleXIcon, FileIcon, PaperclipIcon } from "lucide-react";
+import Locale from "../../locales";
 import {
   AttachmentPrimitive,
   ComposerPrimitive,
@@ -53,7 +54,7 @@ const useAttachmentSrc = () => {
       const src = a.content?.filter((c) => c.type === "image")[0]?.image;
       if (!src) return {};
       return { src };
-    }),
+    })
   );
 
   return useFileSrc(file) ?? src;
@@ -91,13 +92,14 @@ const AttachmentPreviewDialog: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <Dialog>
-      <DialogTrigger className="hover:bg-accent/50 cursor-pointer transition-colors" asChild>
+      <DialogTrigger
+        className="hover:bg-accent/50 cursor-pointer transition-colors"
+        asChild
+      >
         {children}
       </DialogTrigger>
       <AttachmentDialogContent>
-        <DialogTitle className="sr-only">
-          Image Attachment Preview
-        </DialogTitle>
+        <DialogTitle className="sr-only">Image Attachment Preview</DialogTitle>
         <AttachmentPreview src={src} />
       </AttachmentDialogContent>
     </Dialog>
@@ -195,7 +197,7 @@ export const ComposerAddAttachment: FC = () => {
     <ComposerPrimitive.AddAttachment asChild>
       <TooltipIconButton
         className="my-2.5 size-8 p-2 transition-opacity ease-in"
-        tooltip="Add Attachment"
+        tooltip={Locale.MainChat.ToolTips.AddAttachment}
         variant="ghost"
       >
         <PaperclipIcon />

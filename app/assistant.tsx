@@ -5,6 +5,7 @@
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { Thread } from "@/components/assistant-ui/thread";
+import Locale from "../locales";
 import {
   SidebarInset,
   SidebarProvider,
@@ -52,7 +53,7 @@ export const Assistant = () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>New Chat</BreadcrumbPage>
+                  <BreadcrumbPage>{Locale.TopBar.NewChat}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
