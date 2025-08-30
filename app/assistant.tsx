@@ -85,7 +85,7 @@ export const Assistant = () => {
               content={
                 <div>
                   <span>
-                    Get your free API Key from Google Gemini.{" "}
+                    Get your free API Key from Google Gemini -{" "}
                     <a
                       href="https://aistudio.google.com/app/apikey"
                       target="_blank"
