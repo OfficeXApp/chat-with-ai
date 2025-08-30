@@ -2,7 +2,11 @@
 
 "use client";
 
-import { AssistantRuntimeProvider } from "@assistant-ui/react";
+import {
+  AssistantRuntimeProvider,
+  ChatModelAdapter,
+  useLocalRuntime,
+} from "@assistant-ui/react";
 import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { Thread } from "@/components/assistant-ui/thread";
 import Locale from "../locales";
@@ -26,10 +30,15 @@ import {
   SimpleImageAttachmentAdapter,
   SimpleTextAttachmentAdapter,
 } from "@assistant-ui/react";
+import { generateText } from "ai";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 
 export const Assistant = () => {
   const runtime = useChatRuntime({
     api: "/api/chat",
+    headers: {
+      "gemini-api-key": "",
+    },
     adapters: {
       attachments: new CompositeAttachmentAdapter([
         new SimpleImageAttachmentAdapter(),
