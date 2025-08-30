@@ -3,7 +3,7 @@
 // import { openai } from "@ai-sdk/openai";
 // import { frontendTools } from "@assistant-ui/react-ai-sdk";
 import { streamText } from "ai";
-import { createGoogleGenerativeAI, google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 
 export const runtime = "edge";
 export const maxDuration = 30;

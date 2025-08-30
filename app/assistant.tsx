@@ -2,14 +2,11 @@
 
 "use client";
 
-import {
-  AssistantRuntimeProvider,
-  ChatModelAdapter,
-  useLocalRuntime,
-} from "@assistant-ui/react";
+import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { Thread } from "@/components/assistant-ui/thread";
 import Locale from "../locales";
+import { Button, Input, Popover } from "antd";
 import {
   SidebarInset,
   SidebarProvider,
@@ -30,14 +27,31 @@ import {
   SimpleImageAttachmentAdapter,
   SimpleTextAttachmentAdapter,
 } from "@assistant-ui/react";
-import { generateText } from "ai";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { useEffect, useState } from "react";
 
 export const Assistant = () => {
+  const [apiKey, setApiKey] = useState("");
+
+  useEffect(() => {
+    const API_KEY_GEMINI_LOCAL_STORAGE = localStorage.getItem(
+      "API_KEY_GEMINI_LOCAL_STORAGE"
+    );
+    if (API_KEY_GEMINI_LOCAL_STORAGE) {
+      setApiKey(API_KEY_GEMINI_LOCAL_STORAGE);
+    }
+  }, []);
+
+  const updateApiKey = (apiKey: string) => {
+    setApiKey(apiKey);
+    localStorage.setItem("API_KEY_GEMINI_LOCAL_STORAGE", apiKey);
+  };
+
+  // alternatively we can run this completely locally clientside using
+  // useLocalRuntime, ChatModelAdapter, createGoogleGenerativeAI, generateText
   const runtime = useChatRuntime({
     api: "/api/chat",
     headers: {
-      "gemini-api-key": "",
+      "gemini-api-key": apiKey,
     },
     adapters: {
       attachments: new CompositeAttachmentAdapter([
@@ -66,6 +80,39 @@ export const Assistant = () => {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
+            <Popover
+              title={<span>Bring Your Own API Keys</span>}
+              content={
+                <div>
+                  <span>
+                    Get your free API Key from Google Gemini.{" "}
+                    <a
+                      href="https://aistudio.google.com/app/apikey"
+                      target="_blank"
+                    >
+                      Learn more
+                    </a>
+                  </span>
+                  <Input
+                    type="password"
+                    placeholder="Enter your Gemini API key"
+                    value={apiKey}
+                    onChange={(e) => updateApiKey(e.target.value)}
+                    style={{ marginTop: 8 }}
+                  />
+                </div>
+              }
+              trigger="click"
+            >
+              <Button
+                style={{
+                  // align to right
+                  marginLeft: "auto",
+                }}
+              >
+                Settings
+              </Button>
+            </Popover>
           </header>
           <Thread />
         </SidebarInset>
