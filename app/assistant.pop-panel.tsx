@@ -20,7 +20,7 @@ import {
 import { useEffect } from "react";
 import { generateText } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { serializeMessages } from "./page";
+import { serializeMessages } from "@/helpers/history";
 
 export const AssistantPopPanel = ({
   convoID,
