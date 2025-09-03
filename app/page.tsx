@@ -115,7 +115,7 @@ export default function Home() {
         className="flex h-screen items-center justify-center"
         style={{ color: "gray" }}
       >
-        Loading...
+        Waking up...
       </div>
     );
   }
