@@ -151,5 +151,5 @@ const withLingo = lingoCompiler.next({
   },
 });
 
-export default withLingo(nextConfig);
-// export default nextConfig;
+// export default withLingo(nextConfig);
+export default nextConfig;
