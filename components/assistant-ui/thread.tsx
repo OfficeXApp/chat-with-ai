@@ -5,7 +5,7 @@ import {
   MessagePrimitive,
   ThreadPrimitive,
 } from "@assistant-ui/react";
-import type { FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import Locale from "../../locales";
 import {
   ArrowDownIcon,
@@ -28,6 +28,7 @@ import {
   ComposerAttachments,
   UserMessageAttachments,
 } from "./attachment";
+import PopoverApiKeys from "../PopoverKeys";
 
 export const Thread: FC = () => {
   return (
@@ -76,11 +77,39 @@ const ThreadScrollToBottom: FC = () => {
 };
 
 const ThreadWelcome: FC = () => {
+  const [apiKey, setApiKey] = useState("");
+
+  useEffect(() => {
+    const API_KEY_GEMINI_LOCAL_STORAGE = localStorage.getItem(
+      "API_KEY_GEMINI_LOCAL_STORAGE"
+    );
+    if (API_KEY_GEMINI_LOCAL_STORAGE) {
+      setApiKey(API_KEY_GEMINI_LOCAL_STORAGE);
+    }
+  }, []);
+
   return (
     <ThreadPrimitive.Empty>
       <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
         <div className="flex w-full flex-grow flex-col items-center justify-center">
-          <p className="mt-4 font-medium">{Locale.MainChat.WelcomeMessage}</p>
+          {apiKey ? (
+            <p className="mt-4 font-medium">{Locale.MainChat.WelcomeMessage}</p>
+          ) : (
+            <span className="text-muted-foreground">
+              To start using AI, add your{" "}
+              <PopoverApiKeys>
+                <span
+                  style={{
+                    color: "#007bff",
+
+                    cursor: "pointer",
+                  }}
+                >
+                  Gemini API Keys
+                </span>
+              </PopoverApiKeys>
+            </span>
+          )}
         </div>
         {/* <ThreadWelcomeSuggestions /> */}
       </div>
