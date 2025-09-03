@@ -3,30 +3,21 @@
 "use client";
 
 import {
-  AssistantRuntime,
   AssistantRuntimeProvider,
   ChatModelAdapter,
   ThreadMessage,
   useLocalRuntime,
   useThread,
 } from "@assistant-ui/react";
-import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { Thread } from "@/components/assistant-ui/thread";
-import Locale from "../locales";
-import { Button, Input, Popover } from "antd";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { Separator } from "@/components/ui/separator";
 import {
   CompositeAttachmentAdapter,
   SimpleImageAttachmentAdapter,
   SimpleTextAttachmentAdapter,
 } from "@assistant-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { generateText } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { serializeMessages } from "./page";
@@ -122,7 +113,7 @@ const AssistantThreadContent = ({ convoID }: { convoID: string }) => {
       const serialized = serializeMessages(messages as ThreadMessage[]);
       // Convert to JSON string
       const jsonString = JSON.stringify(serialized, null, 2);
-      console.log(`convo=${convoID} as jsonString`, jsonString);
+
       // @ts-ignore
       window.penpalParent?.saveHistory(convoID, jsonString);
     }

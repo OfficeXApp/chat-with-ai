@@ -52,7 +52,6 @@ export default function Home() {
       let connection: any;
 
       const connectPenpal = async () => {
-        console.log("✅ Child: Connecting to Penpal...", convoID);
         try {
           const messenger = new WindowMessenger({
             remoteWindow: window.parent,
@@ -72,20 +71,13 @@ export default function Home() {
 
           const remote = await connection.promise;
           window.penpalParent = remote;
-          console.log("✅ Child: Penpal connection established!");
 
           if (convoID) {
-            console.log("✅ Child: Loading history from parent...", convoID);
             const cacheHistory = await remote.loadHistory(convoID);
-            console.log(
-              "✅ Child: Successfully received loadHistory from parent:",
-              cacheHistory
-            );
             if (cacheHistory) {
               const deserialized = deserializeMessages(
                 JSON.parse(cacheHistory)
               );
-              console.log(`convo as deserialized`, deserialized);
 
               setInitiatedHistory(deserialized);
             }
@@ -101,7 +93,6 @@ export default function Home() {
 
       // 3. This cleanup function is crucial. It runs when the component re-mounts or unmounts.
       return () => {
-        // console.log('🧹 Child: Cleaning up previous Penpal connection.');
         connection?.destroy();
       };
     } else {
@@ -134,7 +125,6 @@ export default function Home() {
 }
 
 declare global {
-  // eslint-disable-next-line ts/naming-convention
   interface Window {
     penpalParent?: RemoteProxy<Methods>;
   }
