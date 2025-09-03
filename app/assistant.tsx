@@ -28,16 +28,10 @@ import {
   SimpleTextAttachmentAdapter,
 } from "@assistant-ui/react";
 import { useEffect, useState } from "react";
+import PopoverApiKeys from "@/components/PopoverKeys";
 
-export const Assistant = () => {
+export const Assistant = ({ hideHeader = false }: { hideHeader?: boolean }) => {
   const [apiKey, setApiKey] = useState("");
-  const [isPopPanelMode, setIsPopPanelMode] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const is_pop_panel_mode = params.get("pop_panel_mode");
-    setIsPopPanelMode(!!is_pop_panel_mode);
-  }, []);
 
   useEffect(() => {
     const API_KEY_GEMINI_LOCAL_STORAGE = localStorage.getItem(
@@ -47,11 +41,6 @@ export const Assistant = () => {
       setApiKey(API_KEY_GEMINI_LOCAL_STORAGE);
     }
   }, []);
-
-  const updateApiKey = (apiKey: string) => {
-    setApiKey(apiKey);
-    localStorage.setItem("API_KEY_GEMINI_LOCAL_STORAGE", apiKey);
-  };
 
   // alternatively we can run this completely locally clientside using
   // useLocalRuntime, ChatModelAdapter, createGoogleGenerativeAI, generateText
@@ -73,7 +62,7 @@ export const Assistant = () => {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
-          {!isPopPanelMode && (
+          {!hideHeader && (
             <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-2 h-4" />
@@ -88,30 +77,7 @@ export const Assistant = () => {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
-              <Popover
-                title={<span>Bring Your Own API Keys</span>}
-                content={
-                  <div>
-                    <span>
-                      Get your free API Key from Google Gemini -{" "}
-                      <a
-                        href="https://aistudio.google.com/app/apikey"
-                        target="_blank"
-                      >
-                        Learn more
-                      </a>
-                    </span>
-                    <Input
-                      type="password"
-                      placeholder="Enter your Gemini API key"
-                      value={apiKey}
-                      onChange={(e) => updateApiKey(e.target.value)}
-                      style={{ marginTop: 8 }}
-                    />
-                  </div>
-                }
-                trigger="click"
-              >
+              <PopoverApiKeys>
                 <Button
                   style={{
                     // align to right
@@ -120,9 +86,10 @@ export const Assistant = () => {
                 >
                   Settings
                 </Button>
-              </Popover>
+              </PopoverApiKeys>
             </header>
           )}
+
           <Thread />
         </SidebarInset>
       </SidebarProvider>

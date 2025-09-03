@@ -29,6 +29,7 @@
     "lingo.dev": "^0.111.1",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
+    "penpal": "^7.0.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "remark-gfm": "^4.0.1",
