@@ -1,8 +1,9 @@
-// app/page.tsx
-
 "use client";
 
-import { useEffect, useState } from "react";
+// Force this page to be dynamically rendered
+export const dynamic = 'force-dynamic';
+
+import { useEffect, useState, Suspense } from "react";
 import { Assistant } from "./assistant";
 import { AssistantPopPanel } from "./assistant.pop-panel";
 import { connect, Methods, RemoteProxy, WindowMessenger } from "penpal";
@@ -10,7 +11,20 @@ import { ThreadMessage } from "@assistant-ui/react";
 import { useSearchParams } from "next/navigation";
 import { deserializeMessages } from "@/helpers/history";
 
-export default function Home() {
+// Loading component for Suspense fallback
+function LoadingScreen() {
+  return (
+    <div
+      className="flex h-screen items-center justify-center"
+      style={{ color: "gray" }}
+    >
+      Waking up...
+    </div>
+  );
+}
+
+// Main component that uses useSearchParams
+function HomeContent() {
   const [isPopPanelMode, setIsPopPanelMode] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [apiKey, setApiKey] = useState("");
@@ -81,17 +95,10 @@ export default function Home() {
     } else {
       setIsReady(true);
     }
-  }, []);
+  }, [searchParams, convoID]);
 
   if (!isReady) {
-    return (
-      <div
-        className="flex h-screen items-center justify-center"
-        style={{ color: "gray" }}
-      >
-        Waking up...
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (isPopPanelMode && apiKey && convoID) {
@@ -105,6 +112,15 @@ export default function Home() {
   }
 
   return <Assistant hideHeader={isPopPanelMode} />;
+}
+
+// Main Home component with Suspense wrapper
+export default function Home() {
+  return (
+    <Suspense fallback={<LoadingScreen />}>
+      <HomeContent />
+    </Suspense>
+  );
 }
 
 declare global {

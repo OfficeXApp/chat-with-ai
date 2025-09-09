@@ -1,5 +1,4 @@
 // app/layout.tsx
-import { LingoProvider, loadDictionary } from "lingo.dev/react/rsc";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@ant-design/v5-patch-for-react-19";
@@ -36,20 +35,18 @@ export default function RootLayout({
             smartlook('init', '03d3d997919105d2bc7de0dc9e564424b2c7d55b', { region: 'eu' });
   `;
   return (
-    <LingoProvider loadDictionary={(locale) => loadDictionary(locale)}>
-      <html lang="en">
-        <head>
-          <script
-            dangerouslySetInnerHTML={{ __html: smartlookScript }}
-            async
-          ></script>
-        </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </html>
-    </LingoProvider>
+    <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: smartlookScript }}
+          async
+        ></script>
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }
