@@ -4,6 +4,7 @@ import lingoCompiler from "lingo.dev/compiler";
 const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
+  output: "export",
 };
 
 const withLingo = lingoCompiler.next({

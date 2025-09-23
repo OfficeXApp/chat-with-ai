@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Assistant } from "./assistant";
 import { AssistantPopPanel } from "./assistant.pop-panel";
 import { connect, Methods, RemoteProxy, WindowMessenger } from "penpal";
@@ -11,6 +11,23 @@ import { useSearchParams } from "next/navigation";
 import { deserializeMessages } from "@/helpers/history";
 
 export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div
+          className="flex h-screen items-center justify-center"
+          style={{ color: "gray" }}
+        >
+          Waking up...
+        </div>
+      }
+    >
+      <HomeClient />
+    </Suspense>
+  );
+}
+
+function HomeClient() {
   const [isPopPanelMode, setIsPopPanelMode] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [apiKey, setApiKey] = useState("");
